@@ -8,5 +8,10 @@ namespace Fiap.Web.AspNet.Controllers
         {
             return View();
         }
+
+        public IActionResult Help()
+        {
+            return View();
+        }
     }
 }
