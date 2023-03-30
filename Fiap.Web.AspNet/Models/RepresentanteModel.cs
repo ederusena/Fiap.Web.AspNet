@@ -8,6 +8,12 @@
 
         public string? Cpf { get; set; }
 
+        public string? IdTipo { get; set; }
+
+        public string? DescricaoTipo { get; set; }
+
+        public string? Comercializado { get; set; }
+
         public string? NomeRepresentante { get; set; }
 
         public string? Token { get; set; }
