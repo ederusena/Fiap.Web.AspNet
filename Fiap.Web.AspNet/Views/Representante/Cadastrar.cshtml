@@ -14,20 +14,31 @@
     <form asp-action="Cadastrar" asp-controller="Representante" method="post">
         <div class="form-horizontal">
             <hr />
+            <!-- Trecho de validação para se existe mensagem a ser exibida -->
+            @if (!Html.ViewData.ModelState.IsValid)
+            {
+                <!-- Tag para exibição da lista de erros -->
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
+            }
+
 
             <div class="form-group">
-                <label>Cpf:</label>
+                <label asp-for="Cpf" class="control-label"></label>
                 <div class="col-md-10">
                     <!-- Caixa de Texto -->
                     <input asp-for="Cpf" />
+                    <!-- Bloco para exibir mensagem de erro -->
+                    <span asp-validation-for="Cpf" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Nome:</label>
+                <label asp-for="NomeRepresentante" class="control-label"></label>
                 <div class="col-md-10">
                     <!-- Caixa de Texto -->
-                    <input asp-for="NomeRepresentante" />
+                    <input asp-for="NomeRepresentante"  />
+                    <!-- Bloco para exibir mensagem de erro -->
+                    <span asp-validation-for="NomeRepresentante" class="text-danger"></span>
                 </div>
             </div>
             <hr />
@@ -40,7 +51,6 @@
             <hr />
         </div>
     </form>
-
 
 </body>
 </html>

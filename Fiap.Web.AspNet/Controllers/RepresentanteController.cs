@@ -6,6 +6,7 @@ namespace Fiap.Web.AspNet.Controllers
     public class RepresentanteController : Controller
     {
 
+
         private IList<RepresentanteModel> representantes;
 
         public RepresentanteController()
@@ -40,16 +41,41 @@ namespace Fiap.Web.AspNet.Controllers
         [HttpPost]
         public IActionResult Cadastrar(RepresentanteModel representante)
         {
-            // Imprime os valores do modelo
-            Console.WriteLine("Descrição: " + representante.Cpf);
-            Console.WriteLine("Comercializado: " + representante.NomeRepresentante);
+            // // Validando o campo CPF
+            // if (string.IsNullOrEmpty(representante.Cpf))
+            // {
+            //     ModelState.AddModelError("Cpf", "O campo Cpf é obrigatório");
+            // }
 
-            // Simila que os dados foram gravados.
-            Console.WriteLine("Gravando o Representante");
+            // // Validando o campo NOME
+            // if (string.IsNullOrEmpty(representante.NomeRepresentante))
+            // {
+            //     ModelState.AddModelError("NomeRepresentante", "O campo Nome é obrigatório");
+            // }
 
-            // Substituímos o return View()
-            // pelo método de redirecionamento
-            return RedirectToAction("Index", "Representante");
+            // Se o ModelState não possuir nenhum erro
+            if (ModelState.IsValid)
+            {
+                // Imprime os valores do modelo
+                Console.WriteLine("Descrição: " + representante.Cpf);
+                Console.WriteLine("Comercializado: " + representante.NomeRepresentante);
+
+                // Simila que os dados foram gravados.
+                Console.WriteLine("Gravando o Representante");
+
+                TempData["mensagem"] = "Representante cadastrado com sucesso!";
+
+                // Substituímos o return View()
+                // pelo método de redirecionamento
+                return RedirectToAction("Index", "Representante");
+
+                // Caso o ModelState tenha algum erro
+            }
+            else
+            {
+                // retorna para tela do formulário
+                return View(representante);
+            }
         }
 
         [HttpGet]
